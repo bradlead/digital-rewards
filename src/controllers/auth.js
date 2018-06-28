@@ -25,7 +25,6 @@ const monzo = (req, res) => {
   // .then(response => request.get('https://api.monzo.com/accounts', {
   //   headers: {
   //     'Authorization': `token ${response.access_token}`,
-  //     // 'User-Agent': `authentication-example`
   //   },
   // }))
   .then((user) => {

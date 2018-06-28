@@ -1,5 +1,7 @@
 ## Class Project (Backend) - Monzo Reward Web App
 
+Frontend repo: https://github.com/cloverc/digi-rewards-front
+
 #### File Structure
 ```bash
 project
