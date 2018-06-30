@@ -7,7 +7,7 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 
 const UserModel = require('./models/user');
-const { auth } = require('./routes');
+const { auth, users } = require('./routes');
 
 dotenv.config();
 
@@ -24,6 +24,7 @@ expressListRoutes({}, '\nEndpoints:', router);
 
 // monzo setup
 app.use('/auth', auth);
+app.use('/users', users);
 
 // hello world
 app.get('/', (req, res) => res.json({ hello: 'world!' }));

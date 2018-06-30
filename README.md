@@ -10,13 +10,15 @@ project
 |   |
 |   |-- controllers
 |   |   |-- auth.js (monzo authentication)
+|   |   |-- users.js (users account creation)
 |   |
 |   |-- models
 |   |   |-- user.js (mongodb database)
 |   |
 |   |-- routes
 |       |-- auth.js (direct to controller)
-|       |-- index.js (routes directory)
+|       |-- index.js (main routes directory)
+|       |-- users.js (users route directory)
 |
 |-- index.js (server)
 ```
