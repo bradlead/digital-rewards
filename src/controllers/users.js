@@ -19,7 +19,6 @@ const create = (req, res) => {
     token_type: req.body.token_type,
     user_id: req.body.user_id,
   });
-console.log(req.body.access_token)
   user.save()
     .then((data) => {
       res.status(201).json(data);

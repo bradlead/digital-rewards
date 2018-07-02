@@ -1,15 +1,12 @@
 const jwt = require('jsonwebtoken');
 const request = require('request-promise');
+// const User = require('../models/user');
 
 const createJWT = (user, callback) => {
   const payload = {
     access_token: user.access_token,
-    client_id: user.client_id,
-    expires_in: user.expires_in,
-    token_type: user.token_type,
-    user_id: user.user_id,
   };
-  console.log(payload)
+  // console.log(payload)
   jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' }, callback);
 };
 
@@ -25,7 +22,19 @@ const monzo = (req, res) => {
     },
     json: true,
   })
-  // add access token to User collection here
+
+//   // create a user (if one doesn't exist) using the retrieved data from Monzo
+//   .then(response => request.get('http://localhost:3000/api/v1/UserListing', {  
+//     body: {
+//       user_id: request.user_id,
+//        },
+//        json: true,
+//     }))
+//  .then(({ user_id }) => User.findOneOrCreate({ user_id }, {
+//     user_id,
+//   }))
+
+  // add access token and initial response to User collection
   .then(response => request.post('http://localhost:3000/api/v1/UserListing', {  
   body: {
     access_token: response.access_token,
@@ -39,7 +48,7 @@ const monzo = (req, res) => {
 
   // .then((response) => {
   //   console.log(response);
-  //   return request.post('http://localhost:3000/api/v1/User', {
+  //   return request.post('http://localhost:3000/api/v1/UserListing', {
   //    body: {
   //         _id: 'testingtesting123',
   //         access_token: response.access_token,
