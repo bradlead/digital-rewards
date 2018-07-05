@@ -6,6 +6,9 @@ Frontend repo: https://github.com/cloverc/digi-rewards-front
 ```bash
 project
 |
+|-- seeders
+|   |-- seed-rewards.js (active merchant rewards)
+|
 |-- src
 |   |
 |   |-- controllers
@@ -14,8 +17,10 @@ project
 |   |   |-- users.js (users account creation)
 |   |
 |   |-- models
-|   |   |-- account.js (mongodb database)
-|   |   |-- user.js (mongodb database)
+|   |   |-- account.js (account mongodb database)
+|   |   |-- reward.js (reward mongodb database)
+|   |   |-- transaction.js (transaction mongodb database)
+|   |   |-- user.js (user mongodb database)
 |   |
 |   |-- routes
 |       |-- account.js (account route directory)

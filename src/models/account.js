@@ -2,13 +2,13 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
-const accountSchema = new Schema({
+const AccountSchema = new Schema({
   id: { type: String, require: true },
   description: { type: String, require: true },
   created: { type: String, require: true },
-  user_id: { type: mongoose.Schema.Types.ObjectId, ref: 'UserListing' },
+  user_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Users' },
 });
 
-const Account =  mongoose.model('UserListing', accountSchema);
+const Account = mongoose.model('Accounts', AccountSchema);
 
 module.exports = Account;

@@ -1,12 +1,11 @@
 const jwt = require('jsonwebtoken');
 const request = require('request-promise');
-// const User = require('../models/user');
+const User = require('../models/user');
 
 const createJWT = (user, callback) => {
   const payload = {
-    access_token: user.access_token,
+    user_id: user.user_id,
   };
-  // console.log(payload)
   jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' }, callback);
 };
 
@@ -22,30 +21,14 @@ const monzo = (req, res) => {
     },
     json: true,
   })
-
-//   // create a user (if one doesn't exist) using the retrieved data from Monzo
-//   .then(response => request.get('http://localhost:3000/api/v1/UserListing', {  
-//     body: {
-//       user_id: request.user_id,
-//        },
-//        json: true,
-//     }))
-//  .then(({ user_id }) => User.findOneOrCreate({ user_id }, {
-//     user_id,
-//   }))
-
   // add access token and initial response to User collection
-  .then(response => request.post('http://localhost:3000/api/v1/UserListing', {  
-  body: {
-    access_token: response.access_token,
-    client_id: response.client_id,
-    expires_in: response.expires_in,
-    token_type: response.token_type,
-    user_id: response.user_id,
-     },
-     json: true,
-  }))
-
+    .then(response => User.updateOrCreate({ user_id: response.user_id }, {
+      access_token: response.access_token,
+      client_id: response.client_id,
+      expires_in: response.expires_in,
+      token_type: response.token_type,
+      user_id: response.user_id,
+    }))
   // .then((response) => {
   //   console.log(response);
   //   return request.post('http://localhost:3000/api/v1/UserListing', {
@@ -58,20 +41,20 @@ const monzo = (req, res) => {
   // })
 
   // return a JWT to the user (we don't want to reveal the access_token to the client)
-  .then((user) => {
-    createJWT(user, (err, token) => {
-      if (err) {
-        res.sendStatus(500);
-      } else {
-        res.status(200).json({ token }); 
-      }
+    .then((user) => {
+      createJWT(user, (err, token) => {
+        if (err) {
+          res.sendStatus(500);
+        } else {
+          res.status(200).json({ token });
+        }
+      });
+    })
+    .catch((error) => {
+      console.log(error.message);
+      res.sendStatus(200);
     });
-  })
-  .catch((error) => {
-    console.log(error.message);
-    res.sendStatus(200);
-  })
-}
+};
 
 module.exports = {
   monzo,

@@ -10,17 +10,10 @@ const UserSchema = new Schema({
   user_id: { type: String, require: true },
 });
 
-UserSchema.statics.findOneOrCreate = function findOneOrCreate(key, data) {
-  return this.findOne(key).then((user) => {
-    if (user) {
-      return user;
-    }
-    return this.create(data).then((newUser) => {
-      return newUser;
-    });
-  });
-}
+UserSchema.statics.updateOrCreate = function updateOrCreate(key, data) {
+  return this.findOneAndUpdate(key, data, { new: true, upsert: true });
+};
 
-const UserModel = mongoose.model('UserListing', UserSchema);
+const UserModel = mongoose.model('Users', UserSchema);
 
 module.exports = UserModel;
