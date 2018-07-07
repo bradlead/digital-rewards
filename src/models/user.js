@@ -8,6 +8,11 @@ const UserSchema = new Schema({
   expires_in: { type: Number, require: true },
   token_type: { type: String, require: true },
   user_id: { type: String, require: true },
+  account: {
+    id: { type: String, require: true },
+    description: { type: String, require: true },
+    created: { type: String, require: true },
+  },
 });
 
 UserSchema.statics.updateOrCreate = function updateOrCreate(key, data) {

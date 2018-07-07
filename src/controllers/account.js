@@ -18,7 +18,6 @@ const account = (req, res) => {
       })
       // .then((response) => {
       //   console.log('***', response);
-      //   console.log(response.body);
       //   // account details posted to user database
       //   user.update()
       // })
@@ -30,13 +29,25 @@ const account = (req, res) => {
           accountDB.user_id = response.accounts[0].owners[0].user_id;
           /* eslint-disable-next-line no-console */
           console.log(accountDB);
+          // console.log(accountDB.user_id);
+          request.post('http://localhost:3000/api/v1/Users', {
+            body: {
+              account: {
+                id: accountDB.id,
+                description: accountDB.description,
+                created: accountDB.created,
+                user_id: accountDB.user_id,
+              },
+            },
+            json: true,
+          });
         })
-      // .then(accountDB => Account.updateOrCreate({ user_id: process.env.USER_ID }))
-      //   id: accountDB.id,
-      //   description: accountDB.description,
-      //   created: accountDB.created,
-      //   user_id: accountDB.user_id,
-      // }))
+        // .then(accountDB => Account.updateOrCreate({ user_id: process.env.USER_ID }, {
+        //   id: accountDB.id,
+        //   description: accountDB.description,
+        //   created: accountDB.created,
+        //   user_id: accountDB.user_id,
+        // }))
         .then(() => {
           res.sendStatus(200);
         });

@@ -6,8 +6,12 @@ const AccountSchema = new Schema({
   id: { type: String, require: true },
   description: { type: String, require: true },
   created: { type: String, require: true },
-  user_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Users' },
+  User: { type: Schema.Types.ObjectId, ref: 'Users' },
 });
+
+AccountSchema.statics.updateOrCreate = function updateOrCreate(key, data) {
+  return this.findOneAndUpdate(key, data, { new: true, upsert: true });
+};
 
 const Account = mongoose.model('Accounts', AccountSchema);
 
