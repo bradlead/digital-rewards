@@ -7,7 +7,9 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 
 const UserModel = require('./models/user');
-const { auth, users, account } = require('./routes');
+const {
+  auth, users, account, transaction,
+} = require('./routes');
 
 dotenv.config();
 
@@ -26,6 +28,7 @@ expressListRoutes({}, '\nEndpoints:', router);
 app.use('/auth', auth);
 app.use('/users', users);
 app.use('/account', account);
+app.use('/transaction', transaction);
 
 // hello world
 app.get('/', (req, res) => res.json({ hello: 'world!' }));

@@ -6,7 +6,7 @@ const AccountSchema = new Schema({
   id: { type: String, require: true },
   description: { type: String, require: true },
   created: { type: String, require: true },
-  User: { type: Schema.Types.ObjectId, ref: 'Users' },
+  user_id: { type: Schema.Types.ObjectId, ref: 'Users' },
 });
 
 AccountSchema.statics.updateOrCreate = function updateOrCreate(key, data) {

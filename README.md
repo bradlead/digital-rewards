@@ -14,6 +14,7 @@ project
 |   |-- controllers
 |   |   |-- account.js (add monzo account)
 |   |   |-- auth.js (monzo authentication)
+|   |   |-- transaction.js (transaction controller)
 |   |   |-- users.js (users account creation)
 |   |
 |   |-- models
@@ -26,6 +27,7 @@ project
 |       |-- account.js (account route directory)
 |       |-- auth.js (authentication route directory)
 |       |-- index.js (main routes directory)
+|   |   |-- transaction.js (transaction route directory)
 |       |-- users.js (users route directory)
 |
 |-- index.js (server)
