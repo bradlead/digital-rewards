@@ -27,7 +27,7 @@ project
 |       |-- account.js (account route directory)
 |       |-- auth.js (authentication route directory)
 |       |-- index.js (main routes directory)
-|   |   |-- transaction.js (transaction route directory)
+|       |-- transaction.js (transaction route directory)
 |       |-- users.js (users route directory)
 |
 |-- index.js (server)

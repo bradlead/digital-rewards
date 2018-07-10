@@ -16,12 +16,13 @@ const account = (req, res) => {
             id: response.accounts[0].id,
             description: response.accounts[0].description,
             created: response.accounts[0].created,
-            // user_id: response.users[0].user_id,
+            // user_id: user.user_id,
           });
         })
-        .then(() => {
+        .then((passData) => {
+          // console.log(user);
           /* eslint-disable-next-line no-console */
-          res.sendStatus(200);
+          res.json(passData);
         });
     })
     .catch((error) => {

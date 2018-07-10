@@ -5,7 +5,14 @@ const { Schema } = mongoose;
 const TransactionsSchema = new Schema({
   id: { type: String, require: true },
   description: { type: String, require: true },
-  user_id: { type: Schema.Types.ObjectId, ref: 'Users' },
+  merchant: {
+    id: { type: String, require: true },
+    logo: { type: String, require: true },
+    emoji: { type: String, require: true },
+    name: { type: String, require: true },
+    category: { type: String, require: true },
+  },
+  user_id: { type: String },
 });
 
 TransactionsSchema.statics.updateOrCreate = function updateOrCreate(key, data) {
