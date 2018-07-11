@@ -29,17 +29,6 @@ const monzo = (req, res) => {
       token_type: response.token_type,
       user_id: response.user_id,
     }))
-  // .then((response) => {
-  //   console.log(response);
-  //   return request.post('http://localhost:3000/api/v1/UserListing', {
-  //    body: {
-  //         _id: 'testingtesting123',
-  //         access_token: response.access_token,
-  //      },
-  //      json: true,
-  //    });
-  // })
-
   // return a JWT to the user (we don't want to reveal the access_token to the client)
     .then((user) => {
       createJWT(user, (err, token) => {

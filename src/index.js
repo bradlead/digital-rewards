@@ -8,7 +8,7 @@ const dotenv = require('dotenv');
 
 const UserModel = require('./models/user');
 const {
-  auth, users, account, gettransaction,
+  auth, users, account, transaction, reward,
 } = require('./routes');
 
 dotenv.config();
@@ -28,7 +28,8 @@ expressListRoutes({}, '\nEndpoints:', router);
 app.use('/auth', auth);
 app.use('/users', users);
 app.use('/account', account);
-app.use('/transaction', gettransaction);
+app.use('/transaction', transaction);
+app.use('/rewards', reward);
 
 // hello world
 app.get('/', (req, res) => res.json({ hello: 'world!' }));

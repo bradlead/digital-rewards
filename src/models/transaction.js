@@ -11,6 +11,10 @@ const TransactionsSchema = new Schema({
     emoji: { type: String, require: true },
     name: { type: String, require: true },
     category: { type: String, require: true },
+    address: {
+      latitude: { type: Number, require: true },
+      longitude: { type: Number, require: true },
+    },
   },
   user_id: { type: String },
 });

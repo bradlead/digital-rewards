@@ -1,30 +1,28 @@
 const request = require('request-promise');
 const User = require('../models/user');
 const Transaction = require('../models/transaction');
+// const groupMerchant = require('../helper/groupMerchant');
 
-const gettransaction = (req, res) => {
+const getTransaction = (req, res) => {
   // User.findOne({ user_id: req.authorizer.user_id })
   User.findOne({ user_id: process.env.USER_ID })
     .then((user) => {
-      request.get(`https://api.monzo.com/transactions?expand[]=merchant&account_id=${process.env.ACCOUNT_ID}`, {
-      // request.get(`https://api.monzo.com/transactions?account_id=${process.env.ACCOUNT_ID}`, {
-      // returns transaction details owned by the currently authorised user
-        headers: {
-          Authorization: `Bearer ${user.access_token}`,
-        },
+      const accountID = user.account.id;
+      request.get(`https://api.monzo.com/transactions?expand[]=merchant&account_id=${accountID}`, {
+        headers: { Authorization: `Bearer ${user.access_token}` },
+        // returns transaction details owned by the currently authorised user
       })
         .then((data) => {
-          // console.log(data);
           const response = JSON.parse(data);
+          /* eslint-disable-next-line max-len */
           const monzoTransactions = response.transactions.map(transaction => Transaction.updateOrCreate({ id: transaction.id }, {
-            // need to add array loop to grab all transaction
             id: transaction.id,
             description: transaction.description,
             merchant: transaction.merchant,
             user_id: user.user_id,
           }));
+          // response.transactions.merchant.map(transaction => groupMerchant(transaction.id));
           Promise.all(monzoTransactions).then((transactions) => {
-            // console.log(transactions);
             res.json(transactions);
           });
         });
@@ -37,5 +35,5 @@ const gettransaction = (req, res) => {
 };
 
 module.exports = {
-  gettransaction,
+  getTransaction,
 };

@@ -1,11 +1,13 @@
 const auth = require('./auth');
 const users = require('./users');
 const account = require('./account');
-const gettransaction = require('./transaction');
+const transaction = require('./transaction');
+const reward = require('./reward');
 
 module.exports = {
   auth,
   users,
   account,
-  gettransaction,
+  transaction,
+  reward,
 };
