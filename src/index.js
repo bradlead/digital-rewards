@@ -8,7 +8,7 @@ const dotenv = require('dotenv');
 
 const UserModel = require('./models/user');
 const {
-  auth, users, account, transaction, reward,
+  auth, users, account, transaction, rewards,
 } = require('./routes');
 
 dotenv.config();
@@ -29,7 +29,7 @@ app.use('/auth', auth);
 app.use('/users', users);
 app.use('/account', account);
 app.use('/transaction', transaction);
-app.use('/rewards', reward);
+app.use('/rewards', rewards);
 
 // hello world
 app.get('/', (req, res) => res.json({ hello: 'world!' }));

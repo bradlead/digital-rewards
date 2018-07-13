@@ -14,11 +14,14 @@ project
 |   |-- controllers
 |   |   |-- account.js (add monzo account)
 |   |   |-- auth.js (monzo authentication)
+|   |   |-- rewards.js (reward controller)
 |   |   |-- transaction.js (transaction controller)
 |   |   |-- users.js (users account creation)
 |   |
+|   |-- helper
+|   |   |-- groupMerchnat.js (group Merchant function)
+|   |
 |   |-- models
-|   |   |-- account.js (account mongodb database)
 |   |   |-- reward.js (reward mongodb database)
 |   |   |-- transaction.js (transaction mongodb database)
 |   |   |-- user.js (user mongodb database)
@@ -27,6 +30,7 @@ project
 |       |-- account.js (account route directory)
 |       |-- auth.js (authentication route directory)
 |       |-- index.js (main routes directory)
+|       |-- rewards.js (rewards route directory)
 |       |-- transaction.js (transaction route directory)
 |       |-- users.js (users route directory)
 |

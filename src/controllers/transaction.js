@@ -1,7 +1,8 @@
 const request = require('request-promise');
 const User = require('../models/user');
-const Transaction = require('../models/transaction');
-// const groupMerchant = require('../helper/groupMerchant');
+// const Transaction = require('../models/transaction');
+
+const groupMerchant = require('../helper/groupMerchant');
 
 const getTransaction = (req, res) => {
   // User.findOne({ user_id: req.authorizer.user_id })
@@ -15,16 +16,20 @@ const getTransaction = (req, res) => {
         .then((data) => {
           const response = JSON.parse(data);
           /* eslint-disable-next-line max-len */
-          const monzoTransactions = response.transactions.map(transaction => Transaction.updateOrCreate({ id: transaction.id }, {
-            id: transaction.id,
-            description: transaction.description,
-            merchant: transaction.merchant,
-            user_id: user.user_id,
-          }));
-          // response.transactions.merchant.map(transaction => groupMerchant(transaction.id));
-          Promise.all(monzoTransactions).then((transactions) => {
-            res.json(transactions);
-          });
+          // const monzoTransactions = response.transactions.map(transaction => Transaction.updateOrCreate({ id: transaction.id }, {
+          //   id: transaction.id,
+          //   description: transaction.description,
+          //   merchant: transaction.merchant,
+          //   user_id: user.user_id,
+          // }));
+          const rewardDB = response.transactions.map(transaction => transaction.id);
+          groupMerchant(rewardDB);
+          const reduceReward = groupMerchant(rewardDB);
+          console.log(reduceReward);
+
+          // Promise.all(monzoTransactions).then((transactions) => {
+          //   res.json(transactions);
+          // });
         });
     })
     .catch((error) => {

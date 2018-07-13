@@ -9,20 +9,6 @@ const getAccount = (req, res) => {
         headers: { Authorization: `Bearer ${user.access_token}` },
         // returns account details owned by the currently authorised user
       })
-        // .then((data) => {
-        //   const response = JSON.parse(data);
-        //   return User.updateOrCreate({ user_id: user.user_id }, {
-        //     account: {
-        //       id: response.accounts[0].id,
-        //       description: response.accounts[0].description,
-        //       created: response.accounts[0].created,
-        //     },
-        //     account_id: response.accounts[0].id,
-        //   });
-        // })
-        // .then((passData) => {
-        //   res.json(passData);
-        // });
         .then((data) => {
           const response = JSON.parse(data);
           /* eslint-disable-next-line max-len */
