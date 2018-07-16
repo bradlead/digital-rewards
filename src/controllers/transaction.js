@@ -2,7 +2,7 @@ const request = require('request-promise');
 const User = require('../models/user');
 
 const { groupMerchant } = require('../helper/groupMerchant');
-// const { getRewardbyMerchant } = require('../controllers/rewards');
+const { getRewardbyMerchant } = require('../controllers/rewards');
 
 const getTransaction = (req, res) => {
   // User.findOne({ user_id: req.authorizer.user_id })
@@ -16,15 +16,19 @@ const getTransaction = (req, res) => {
         .then((data) => {
           const response = JSON.parse(data);
           // group the merchants and assign to `reduceReward`
-          const reduceReward = groupMerchant(response.transactions.map(transaction => transaction.merchant));
+          const reduceReward = groupMerchant(response.transactions.map(
+            transaction => transaction.merchant,
+          ));
           // convert from object to array
-          const arrayMerchant = Object.keys(reduceReward).map(key => [String(key), reduceReward[key]]);
-
+          const arrayMerchant = Object.keys(reduceReward).map(
+            key => [String(key), reduceReward[key]],
+          );
           // filter list with `getRewardbyMerchant` function
-          // getRewardbyMerchant(req, res, result);
-
-          // currently passing unfiltered grouped merchants to frontend
-          res.status(201).json(arrayMerchant);
+          getRewardbyMerchant(arrayMerchant)
+            // passing `rewards` from `getRewardbyMerchant` function to frontend
+            .then((rewards) => {
+              res.send(rewards);
+            });
         });
     })
     .catch((error) => {
