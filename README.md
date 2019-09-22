@@ -3,6 +3,7 @@
 Frontend repo: https://github.com/bradlead/digital-reward-frontend.git
 
 
+![Login page](./src/assets/front-end2.png)
 #### File Structure
 ```bash
 project
