@@ -6,7 +6,7 @@ const getAccount = (req, res) => {
   User.findOne({ user_id: process.env.USER_ID })
     .then((user) => {
       request.get('https://api.monzo.com/accounts', {
-        headers: { Authorization: `Bearer ${user.access_token}` },
+        headers: { Authorization: `Bearer ${'user.access_token'}` },
         // returns account details owned by the currently authorised user
       })
         .then((data) => {
