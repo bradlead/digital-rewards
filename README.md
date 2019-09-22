@@ -1,6 +1,7 @@
-## Class Project (Backend) - Monzo Reward Web App
+## Manchester Codes Final Project - Monzo-Reward PWA
 
-Frontend repo: https://github.com/SharifCoding/digi-reward-front
+Frontend repo: https://github.com/bradlead/digital-reward-frontend.git
+
 
 #### File Structure
 ```bash
