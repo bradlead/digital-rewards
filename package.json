@@ -8,7 +8,7 @@
     "chalk": "^2.4.1",
     "cors": "^2.8.4",
     "dotenv": "^5.0.1",
-    "express": "^4.16.3",
+    "express": "^4.17.3",
     "express-list-routes": "^0.1.4",
     "express-restify-mongoose": "^5.0.0",
     "jsonwebtoken": "^8.2.1",
